@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calculadora Drogas</title>
+<title>Calculadora RP</title>
 
 <style>
 *{
@@ -111,7 +110,7 @@ button:hover{
 
 <div class="container">
 
-    <h1>💰 Calculadora Drogas</h1>
+    <h1>💰 Calculadora RP</h1>
 
     <div class="card">
         <h2>Calcular Valor</h2>
@@ -128,6 +127,9 @@ button:hover{
             <option value="limpo">Limpo</option>
             <option value="sujo">Sujo</option>
         </select>
+
+        <label>Nome do Cliente</label>
+        <input type="text" id="nomeCliente1" placeholder="Ex: Fulano">
 
         <label>Quantidade</label>
         <input type="number" id="quantidade" placeholder="Ex: 50">
@@ -152,6 +154,9 @@ button:hover{
             <option value="limpo">Limpo</option>
             <option value="sujo">Sujo</option>
         </select>
+
+        <label>Nome do Cliente</label>
+        <input type="text" id="nomeCliente2" placeholder="Ex: Fulano">
 
         <label>Quanto dinheiro a pessoa tem?</label>
         <input type="number" id="dinheiroQuantidade" placeholder="Ex: 10000">
@@ -185,6 +190,7 @@ function pegarPreco(cliente, dinheiro){
 
 function calcularValor(){
     const cliente = document.getElementById('cliente1').value;
+    const nome = document.getElementById('nomeCliente1').value;
     const dinheiro = document.getElementById('dinheiro1').value;
     const quantidade = Number(document.getElementById('quantidade').value);
 
@@ -194,12 +200,20 @@ function calcularValor(){
     document.getElementById('resultadoValor').innerHTML = `
         💵 Valor por unidade: <span class="valor">$${preco}</span><br>
         📦 Quantidade: <span class="valor">${quantidade}</span><br>
-        💰 Total: <span class="valor">$${total}</span>
+        💰 Total: <span class="valor">$${total}</span><br><br>
+
+        <hr style="margin:15px 0; border-color:#2b3242;">
+
+        🧾 Extrato:<br>
+        - ${quantidade}x cetamina<br>
+        + $${total} ${dinheiro}<br>
+        👤 ${nome}
     `;
 }
 
 function calcularQuantidade(){
     const cliente = document.getElementById('cliente2').value;
+    const nome = document.getElementById('nomeCliente2').value;
     const dinheiro = document.getElementById('dinheiro2').value;
     const valor = Number(document.getElementById('dinheiroQuantidade').value);
 
@@ -210,7 +224,14 @@ function calcularQuantidade(){
     document.getElementById('resultadoQuantidade').innerHTML = `
         💵 Valor por unidade: <span class="valor">$${preco}</span><br>
         📦 Quantidade possível: <span class="valor">${quantidade}</span><br>
-        🪙 Dinheiro restante: <span class="valor">$${sobra}</span>
+        🪙 Dinheiro restante: <span class="valor">$${sobra}</span><br><br>
+
+        <hr style="margin:15px 0; border-color:#2b3242;">
+
+        🧾 Extrato:<br>
+        - ${quantidade}x cetamina<br>
+        + $${quantidade * preco} ${dinheiro}<br>
+        👤 ${nome}
     `;
 }
 </script>
